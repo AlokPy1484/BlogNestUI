@@ -28,6 +28,11 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
 
+interface UserData {
+  password: string;
+  username: string;
+}
+
 const schema = z.object({
   username: z.string({
     message: "Enter valid username",
@@ -52,7 +57,7 @@ const schema = z.object({
 type Inputs = z.infer<typeof schema>
 
 
-const createUser = async(userData) => {
+const createUser = async(userData:UserData) => {
   try{
     const response = await axios.post("http://127.0.0.1:8000/register/",userData)
     console.log(response)

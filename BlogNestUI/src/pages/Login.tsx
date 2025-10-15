@@ -15,7 +15,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -33,6 +32,7 @@ import AuthContext from "@/context/AuthProvider"
 //   email: string
 //   password: string
 // }
+
 
 
 const schema = z.object({
@@ -63,7 +63,12 @@ const fetchTokens = async(data: Inputs) => {
 }
 
 export function Login() {
-  const { setAuth,auth } = useContext(AuthContext);
+  const context = useContext(AuthContext);
+
+  if (!context) {
+    throw new Error("AuthContext must be used within an AuthProvider");}
+
+  const { setAuth } = context;
 
   // const mutation = useMutation({
   //   mutationFn: ()=> fetchTokens(data),
@@ -80,7 +85,7 @@ export function Login() {
       setAuth({ accessToken: access, refreshToken: refresh });
       localStorage.setItem("accessToken", access);
       localStorage.setItem("refreshToken", refresh);
-      console.log(`context`,auth.accessToken);
+      // console.log(`context`,auth.accessToken);
       toast.success("Login Successful!")
     },
   })

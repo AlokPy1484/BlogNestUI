@@ -4,14 +4,17 @@ import axios from 'axios';
 
 
 
-
-
 interface Blogpost {
 id: string;
 title: string;
 content: string;
 author: string;
 date_since: string
+}
+
+interface BlogResponse {
+  results: Blogpost[];
+  count?: number;
 }
 
 const BASE_URL = "https://blognestapi.onrender.com/blogposts";
@@ -29,7 +32,7 @@ const fetchBlogs = async() => {
 
 function HomePage(){
 
-    const {data: blogposts, isLoading} = useQuery<Blogpost[]>({
+    const {data: blogposts, isLoading} = useQuery<BlogResponse>({
         queryFn: () => fetchBlogs(),
         queryKey: ["blogs"]
     });

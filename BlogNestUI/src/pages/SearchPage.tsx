@@ -3,6 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
+
+
+interface Blogpost {
+  id: string;
+  title: string;
+  author: string;
+  content: string;
+  date_since: string;
+}
+
 const BASE_URL = "http://127.0.0.1:8000/";
 
 function SearchPage(){
@@ -34,7 +44,7 @@ function SearchPage(){
 
     return(
         <div className="flex flex-col justify-center items-center w-screen bg-zinc-900">
-            <a className="flex flex-row mt-25 text-xl text-white">Found {blogposts?.length | 0} articles related to your search</a>
+            <a className="flex flex-row mt-25 text-xl text-white">Found {blogposts?.length ?? 0} articles related to your search</a>
             <div>
                 {blogposts?.map((blogpost) => {
                 return <div className="flex flex-col justify-center items-center w-screen bg-zinc-900" key={blogpost.id}>
