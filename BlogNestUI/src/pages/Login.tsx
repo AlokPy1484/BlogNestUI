@@ -28,6 +28,7 @@ import axios from "axios"
 import { useMutation } from "@tanstack/react-query"
 import { useContext } from "react"
 import AuthContext from "@/context/AuthProvider"
+import { BASE_URL } from "@/config"
 // type Inputs = {
 //   email: string
 //   password: string
@@ -52,7 +53,7 @@ type Inputs = z.infer<typeof schema>
 const fetchTokens = async(data: Inputs) => {
   console.log("Data being sent to axios:", data);
   try{
-   const response = await axios.post('http://127.0.0.1:8000/api/token/',data);
+   const response = await axios.post(`${BASE_URL}/api/token/`,data);
     console.log(response);
     return response.data;
   }

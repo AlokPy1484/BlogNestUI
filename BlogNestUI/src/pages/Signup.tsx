@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/form"
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { BASE_URL } from "@/config";
 
 
 interface UserData {
@@ -59,7 +60,7 @@ type Inputs = z.infer<typeof schema>
 
 const createUser = async(userData:UserData) => {
   try{
-    const response = await axios.post("http://127.0.0.1:8000/register/",userData)
+    const response = await axios.post(`${BASE_URL}/register/`,userData)
     console.log(response)
     return response.data
   }

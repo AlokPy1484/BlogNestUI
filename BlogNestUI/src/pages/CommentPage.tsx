@@ -2,6 +2,7 @@ import CommentCard from "@/components/CommentCard"
 import CommentHeader from "@/components/CommentHeader"
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { BASE_URL } from "@/config";
 
 
 
@@ -15,7 +16,7 @@ interface CommentPageProps {
   blogID: string | number;
 }
 
-const BASE_URL = "http://127.0.0.1:8000/";
+// const BASE_URL = "http://127.0.0.1:8000/";
 
 
 

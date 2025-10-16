@@ -1,6 +1,7 @@
 import BlogfeedCard from "@/components/BlogfeedCard"
 import { useQuery } from "@tanstack/react-query"
 import axios from 'axios';
+import { BASE_URL } from "@/config";
 
 
 
@@ -17,11 +18,11 @@ interface BlogResponse {
   count?: number;
 }
 
-const BASE_URL = "https://blognestapi.onrender.com/blogposts";
+// const BASE_URL = "https://blognestapi.onrender.com/blogposts";
 
 const fetchBlogs = async() => {
     try{
-        const response = await axios.get(`${BASE_URL}/all`);
+        const response = await axios.get(`${BASE_URL}/blogposts/all`);
         console.log(response.data)
         return response.data
     }

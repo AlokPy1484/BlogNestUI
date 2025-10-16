@@ -1,4 +1,5 @@
 import BlogfeedCard from "@/components/BlogfeedCard";
+import { BASE_URL } from "@/config";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -13,7 +14,7 @@ interface Blogpost {
   date_since: string;
 }
 
-const BASE_URL = "http://127.0.0.1:8000/";
+// const BASE_URL = "http://127.0.0.1:8000/";
 
 function SearchPage(){
 

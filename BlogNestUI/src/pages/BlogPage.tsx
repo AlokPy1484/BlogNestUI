@@ -3,10 +3,11 @@ import { useQuery } from "@tanstack/react-query"
 import axios from 'axios';
 import { useParams } from "react-router-dom";
 import CommentPage from "./CommentPage";
+import { BASE_URL } from "@/config";
 
 
 
-const BASE_URL = "http://127.0.0.1:8000/";
+// const BASE_URL = "http://127.0.0.1:8000/";
 
 // interface Comments{
 //     id:string;
@@ -19,7 +20,7 @@ function BlogPage(){
     const fetchBlog = async() => {
     
         try{
-            const response = await axios.get(`${BASE_URL}blogposts/${blogID}`)
+            const response = await axios.get(`${BASE_URL}/blogposts/${blogID}`)
             console.log(response.data)
             return response.data
         }

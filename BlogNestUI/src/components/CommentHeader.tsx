@@ -13,6 +13,7 @@ import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import AuthContext from "@/context/AuthProvider";
+import { BASE_URL } from "@/config";
 
 interface CommentProp{
     blogID: string | number;
@@ -46,7 +47,7 @@ function CommentHeader(props:CommentProp){
     const postComment = async(newComment:NewComments)=> {
         console.log(auth.accessToken)
         try{
-            const response = await axios.post('http://127.0.0.1:8000/comment/',newComment,{
+            const response = await axios.post(`${BASE_URL}/comment/`,newComment,{
                                           headers: { Authorization: `Bearer ${auth.accessToken}` }});
             console.log(response)
             return response.data

@@ -15,6 +15,7 @@ import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
 import { useContext } from "react"
 import AuthContext from "@/context/AuthProvider"
+import { BASE_URL } from "@/config"
 
 // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYwMDY5NjA5LCJpYXQiOjE3NjAwNjkzMDksImp0aSI6IjNjOGRkZTdjZjlkNDQwYmI4Nzk5OWIxZWY5ZTcwMzdiIiwidXNlcl9pZCI6IjEifQ.Nv2BDmIibtvTSFOYTdFZbXzu9-VAN7MhpfKpMfi9gn8"
 
@@ -42,7 +43,7 @@ function BlogCreate(){
     
     const postBlog = async(newPost:NewPost) => {
         try{
-            const response = await axios.post('http://127.0.0.1:8000/blogposts/',newPost,{
+            const response = await axios.post(`${BASE_URL}/blogposts/`,newPost,{
                                           headers: { Authorization: `Bearer ${auth.accessToken}` }});
             console.log(response)
             return response.data
