@@ -19,15 +19,29 @@ interface CommentProp{
 }
 
 interface NewComments{
-    title: string;
-    body: string
+    body: string;
+    blog: string | number;
 }
 
 
 // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYwMTcyMTk3LCJpYXQiOjE3NjAxNzE4OTcsImp0aSI6IjQxZTM2ZWZkZGEyZDQ2MzhhNmUyN2JlZjg3Y2UzN2FjIiwidXNlcl9pZCI6IjEifQ.S-l5_qLLw8VJZbB23jQ-ApKZ6hBH2Y8ifM-QwkStHtg"
 function CommentHeader(props:CommentProp){
     
-    const { auth } = useContext(AuthContext);
+    const context = useContext(AuthContext);
+
+    if(!context){
+        throw new Error("User not logedIn, no context");
+    }
+
+    const {auth} = context
+
+    if(!auth){
+        throw new Error("User not logedIn, no auth")
+    }
+
+    
+
+
     // console.log(`user Token:`,auth.accessToken)  
     const postComment = async(newComment:NewComments)=> {
         console.log(auth.accessToken)
@@ -56,8 +70,8 @@ const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const blog = props.blogID
     const body = comment
-    console.log({blog,body})
-    mutation.mutate({blog,body})
+    console.log({body,blog})
+    mutation.mutate({body,blog})
 }
 
     return(

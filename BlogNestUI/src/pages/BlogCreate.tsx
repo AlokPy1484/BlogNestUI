@@ -27,7 +27,18 @@ interface NewPost {
 
 function BlogCreate(){
     
-    const { auth } = useContext(AuthContext);
+    const context = useContext(AuthContext);
+
+    if (!context) {
+    throw new Error("BlogCreate must be used within an AuthProvider");
+  }
+
+    const {auth} = context
+
+    if (!auth) {
+    console.error("No auth found — user might not be logged in.");
+    return;
+}
     
     const postBlog = async(newPost:NewPost) => {
         try{

@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom"
 import Navbar from "../components/Navbar"
 import Sidenav from "../components/SideNav"
 import Activity from "../components/Activity"
-import { Toaster } from "@/components/ui/sonner"
+import Toaster from "@/components/ui/sonner"
 
 
 

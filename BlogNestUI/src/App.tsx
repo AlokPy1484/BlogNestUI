@@ -12,7 +12,7 @@ import ProtectedRoutes from './utils/ProtectedRoutes'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import SearchPage from './pages/SearchPage'
 import { AuthProvider } from "./context/AuthProvider";
-import { Toaster } from './components/ui/sonner'
+import Toaster from './components/ui/sonner'
 
 
 
