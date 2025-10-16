@@ -69,7 +69,7 @@ export function Login() {
   if (!context) {
     throw new Error("AuthContext must be used within an AuthProvider");}
 
-  const { setAuth } = context;
+  const { setAuth} = context;
 
   // const mutation = useMutation({
   //   mutationFn: ()=> fetchTokens(data),
@@ -110,11 +110,13 @@ export function Login() {
   }
 
 
+
   return (
+    <div className="flex justify-center items-center pr-15 w-[100vw] h-[100vh]">
     <Form {...form}>
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 
-    <Card className="w-full max-w-80 m-30 bg-black">
+    <Card className="w-full max-w-80 m-10 bg-black">
       <CardHeader>
         <div className="text-white">
         <CardTitle>Login to your account</CardTitle></div>
@@ -169,5 +171,6 @@ export function Login() {
     </Card>
     </form>
     </Form>
+    </div>
   )
 }

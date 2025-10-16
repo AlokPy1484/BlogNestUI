@@ -100,10 +100,11 @@ export function Signup() {
 
 
   return (
+    <div className="flex justify-center items-center pr-15 w-[100vw] h-[100vh] overflow-hidden">
     <Form {...form}>
     <form onSubmit={form.handleSubmit(onSubmit)} >
 
-    <Card className="w-full max-w-80 m-30 bg-black">
+    <Card className="w-full max-w-80 m-10 bg-black">
       <CardHeader>
         <div className="text-white">
         <CardTitle>Create new account</CardTitle></div>
@@ -168,5 +169,6 @@ export function Signup() {
     </Card>
     </form>
     </Form>
+    </div>
   )
 }
