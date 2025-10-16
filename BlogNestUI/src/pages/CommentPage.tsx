@@ -4,17 +4,25 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 
+
+interface Comment {
+  user: string;
+  body: string;
+  id: number;
+}
+
+interface CommentPageProps {
+  blogID: string | number;
+}
+
 const BASE_URL = "http://127.0.0.1:8000/";
 
-// interface Comments{
-//     id:string;
-// }
 
 
 
-function CommentPage(props){
+function CommentPage({ blogID }: CommentPageProps){
 
-    const blogID = props.blogID
+    // const blogID = props.blogID
 
 
     const fetchComment = async() => {
@@ -48,7 +56,7 @@ function CommentPage(props){
         <div className="flex flex-col justify-center items-center w-screen bg-black">
             <CommentHeader blogID={blogID}/>
       <div className="flex flex-col gap-5 w-4/5 md:max-w-1/2 mt-4">
-        {comments?.results?.map((comment) => (
+        {comments?.results?.map((comment: Comment) => (
           <div key={comment.id}>
             <CommentCard user={comment.user} body={comment.body}/>
           </div>

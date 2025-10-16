@@ -14,8 +14,8 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
-  const onSubmit = (e) => {
-    const formData = new FormData(e.target);
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const formData = new FormData(e.currentTarget);
     const query = formData.get("search");
     navigate(`/search/${query}`, {replace:true})
     console.log(query)}

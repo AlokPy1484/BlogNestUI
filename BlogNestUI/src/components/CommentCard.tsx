@@ -8,9 +8,15 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "./ui/button"
 
+interface CommentsProps{
+    user: string;
+    body: string;
 
 
-function CommentCard(props){
+}
+
+
+function CommentCard(props:CommentsProps){
 
 
 

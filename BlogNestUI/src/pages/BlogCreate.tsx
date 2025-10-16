@@ -19,12 +19,17 @@ import AuthContext from "@/context/AuthProvider"
 // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYwMDY5NjA5LCJpYXQiOjE3NjAwNjkzMDksImp0aSI6IjNjOGRkZTdjZjlkNDQwYmI4Nzk5OWIxZWY5ZTcwMzdiIiwidXNlcl9pZCI6IjEifQ.Nv2BDmIibtvTSFOYTdFZbXzu9-VAN7MhpfKpMfi9gn8"
 
 
+interface NewPost {
+  title: string;
+  content: string;
+}
+
 
 function BlogCreate(){
     
     const { auth } = useContext(AuthContext);
     
-    const postBlog = async(newPost) => {
+    const postBlog = async(newPost:NewPost) => {
         try{
             const response = await axios.post('http://127.0.0.1:8000/blogposts/',newPost,{
                                           headers: { Authorization: `Bearer ${auth.accessToken}` }});
@@ -37,10 +42,11 @@ function BlogCreate(){
     }
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const title = e.target.title.value
-        const content = e.target.content.value
+        const formData = new FormData(e.currentTarget);
+        const title = formData.get("title") as string;
+        const content = formData.get("content") as string;
         console.log({title,content})
         mutation.mutate({title,content})
     }

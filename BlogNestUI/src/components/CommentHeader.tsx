@@ -14,15 +14,22 @@ import { useMutation } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import AuthContext from "@/context/AuthProvider";
 
+interface CommentProp{
+    blogID: string | number;
+}
 
-//axios api call
+interface NewComments{
+    title: string;
+    body: string
+}
+
 
 // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYwMTcyMTk3LCJpYXQiOjE3NjAxNzE4OTcsImp0aSI6IjQxZTM2ZWZkZGEyZDQ2MzhhNmUyN2JlZjg3Y2UzN2FjIiwidXNlcl9pZCI6IjEifQ.S-l5_qLLw8VJZbB23jQ-ApKZ6hBH2Y8ifM-QwkStHtg"
-function CommentHeader(props){
+function CommentHeader(props:CommentProp){
     
     const { auth } = useContext(AuthContext);
     // console.log(`user Token:`,auth.accessToken)  
-    const postComment = async(newComment)=> {
+    const postComment = async(newComment:NewComments)=> {
         console.log(auth.accessToken)
         try{
             const response = await axios.post('http://127.0.0.1:8000/comment/',newComment,{
@@ -45,7 +52,7 @@ function CommentHeader(props){
         },
     })
 
-const handleSubmit = (e) => {
+const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const blog = props.blogID
     const body = comment
