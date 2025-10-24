@@ -40,7 +40,6 @@ function CommentHeader(props:CommentProp){
         throw new Error("User not logedIn, no auth")
     }
 
-    
 
 
     // console.log(`user Token:`,auth.accessToken)  
@@ -64,6 +63,7 @@ function CommentHeader(props:CommentProp){
         mutationFn: postComment,
         onSuccess: (data) => {
             console.log(data)
+            window.location.reload();
         },
     })
 
@@ -73,6 +73,7 @@ const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     const body = comment
     console.log({body,blog})
     mutation.mutate({body,blog})
+
 }
 
     return(
