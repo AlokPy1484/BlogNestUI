@@ -15,8 +15,33 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 import { Share2, UserRoundPlus, UsersRound } from "lucide-react"
 import { Button } from "./ui/button"
+// import { jwtDecode } from "jwt-decode";
+// import { useContext } from "react"
+// import AuthContext from "@/context/AuthProvider"
 
-function Profile(){
+// interface TokenPayload {
+//   username: string;
+//   user_id: number;
+//   email: string;
+//   exp: number;
+// }
+
+
+
+function Profile(props:any){
+//       const context = useContext(AuthContext);
+
+//   if (!context) {
+//     throw new Error("AuthContext must be used within an AuthProvider");}
+
+//     const { auth } = context;
+//     const token = auth?.accessToken
+
+//     if (token) {
+//     const decoded = jwtDecode<TokenPayload>(token);
+//     console.log(token)
+//     console.log(decoded.username); // 👉 "alok"
+//     }
 
 
   return(     
@@ -29,15 +54,15 @@ function Profile(){
             </div>
             <div>
             <CardHeader className="pt-2">
-                <CardTitle className="text-2xl pb-2">Alok Pandey</CardTitle>
+                <CardTitle className="text-2xl pb-2">{props.username}</CardTitle>
             </CardHeader>
             <CardContent>
                 <div className="blogInfo pb-4 flex flex-row justify-start gap-2">
-                    <a>35 posts</a>
+                    <a>{props.posts}</a>
                     <a>123 Friends</a>
-                    <a>12 Liked</a>
+                    <a>{props.likes}</a>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi cupiditate nihil animi officiis eveniet modi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, hic?</p>
+                <p>{props.bio}</p>
                 <div className="flex flex-col md:flex-row justify-between items-center w-full mt-4 mb-2 ">
                 <div className="blogButtons flex flex-row justify-start gap-2">
                     <Button ><UserRoundPlus/>Add</Button>

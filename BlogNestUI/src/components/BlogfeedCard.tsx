@@ -27,7 +27,7 @@ content: string;
 author: string;
 date_since: string;
 id:string;
-author_id: string;
+author_id?: string;
 }
 
 function BlogfeedCard(props:Props){
