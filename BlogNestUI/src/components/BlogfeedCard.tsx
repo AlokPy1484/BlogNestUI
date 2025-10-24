@@ -13,6 +13,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "./ui/button"
 import { Link } from 'react-router-dom'
 import { Heart, MessageCircle, Share2 } from "lucide-react"
+import { useContext, useEffect, useState } from "react"
+import axios from "axios"
+import { BASE_URL } from "@/config"
+import { useMutation } from "@tanstack/react-query"
+import AuthContext from "@/context/AuthProvider"
 
 
 
@@ -22,10 +27,79 @@ content: string;
 author: string;
 date_since: string;
 id:string;
+author_id: string;
 }
 
 function BlogfeedCard(props:Props){
+    const  [isLiked,setIsLiked] = useState(false)
 
+        const context = useContext(AuthContext);
+
+    if(!context){
+        throw new Error("User not logedIn, no context");
+    }
+
+    const {auth} = context
+
+    if(!auth){
+        throw new Error("User not logedIn, no auth")
+    }
+
+    const getLike = async() => {
+        try{
+            console.log(auth.accessToken)
+            const response = await axios.get(`${BASE_URL}/like/blog/${props.id}`,{
+                                          headers: { Authorization: `Bearer ${auth.accessToken}`}})
+            console.log(response.data)
+            return response.data
+
+        }
+        catch(err){
+            console.log(`getLike Error: ${err}`)
+        }
+    }
+
+
+    const toggleLike = async() => {
+        console.log(auth.accessToken)
+        try{
+            const response = await axios.post(`${BASE_URL}/blogpost/${props.id}/like/`,{},{
+                                          headers: { Authorization: `Bearer ${auth.accessToken}`}})
+            console.log(response.data)
+            return response.data
+
+        }
+        catch(err){
+            console.log(`Error: ${err}`)
+        }
+    }
+
+    
+
+    const mutation = useMutation({
+    mutationFn: toggleLike,
+    onSuccess: (data) => {
+        console.log(data)
+    },})
+
+useEffect(() => {
+  const fetchLikeStatus = async () => {
+    try {
+      const like = await getLike(); // <-- await API call
+      console.log(like);
+      setIsLiked(like.isLiked);
+    } catch (err) {
+      console.error("Error fetching like status:", err);
+    }
+  };
+
+  fetchLikeStatus();
+}, [auth.accessToken]);
+
+    const handleLikeClick = () => {
+        isLiked ? setIsLiked(false) : setIsLiked(true)
+        mutation.mutate()
+    }
 
 
     return(
@@ -46,13 +120,13 @@ function BlogfeedCard(props:Props){
                         <AvatarImage src="https://github.com/shadcn.png" />
                         <AvatarFallback>US</AvatarFallback>
                     </Avatar>
-                    <a>{props.author}</a>
+                    <Link to={`/profile/${props.author_id}`}><a>{props.author}</a></Link>
                     <a>Follow</a>
                     <a>{props.date_since}</a>
                 </div>
                 <p>{props.content}</p>
                 <div className="blogButtons flex flex-row justify-center gap-2 p-2">
-                    <Button variant="outline" ><Heart/>2.1K</Button>
+                    <Button onClick={handleLikeClick} variant="outline" ><Heart stroke='red' fill={isLiked ? 'red' : 'black'}/>2.1K</Button>
                     <Button><MessageCircle/>632</Button>
                     <Popover>
                     <PopoverTrigger>
