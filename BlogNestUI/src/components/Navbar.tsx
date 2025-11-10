@@ -9,6 +9,7 @@ import { Bell, Search, SquarePen, UserRound } from "lucide-react"
 import { NavLink, useNavigate} from 'react-router-dom'
 import AuthContext from "@/context/AuthProvider"
 import { useContext, useState } from "react"
+// import Notifications from "./Notifications"
 
 
 
@@ -47,8 +48,8 @@ const Navbar = () => {
   // console.log(auth.accessToken)
 
   return (
-    <div className="flex fixed top-0 w-[100vw] p-4 border-none bg-black z-100">
-      <div className="flex flex-row justify-start md:justify-between w-full">
+    <div className="flex flex-row justify-center items-center fixed top-0 left-0 w-screen p-4 border-none bg-black z-100">
+      <div className="flex flex-row justify-start md:justify-between w-screen">
     <div className="flex flex-row justify-start gap-3 md:pl-5 w-100 md:w-full">
       <NavLink to='/'><a className="text-shadow-blue-50 text-2xl">BlogNest</a></NavLink>
       <form className={ `md:block ${search ? `block`:`hidden`}` } onSubmit={onSubmit}>
@@ -66,6 +67,7 @@ const Navbar = () => {
               <PopoverContent className="bg-black">
                 <div>Notifications</div>
                 <div className=" w-full pt-4 text-zinc-500 text-center">You have 0 notifications</div>
+                {/* <Notifications/> */}
               </PopoverContent>
               </Popover>
               {auth?.accessToken?( <NavLink to='/profile/1'><Button variant="outline" size="sm"><UserRound/>Profile</Button></NavLink>):
