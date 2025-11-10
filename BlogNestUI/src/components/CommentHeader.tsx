@@ -14,6 +14,9 @@ import { useMutation } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import AuthContext from "@/context/AuthProvider";
 import { BASE_URL } from "@/config";
+import { useAuth } from "@clerk/clerk-react";
+
+
 
 interface CommentProp{
     blogID: string | number;
@@ -27,6 +30,8 @@ interface NewComments{
 
 // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYwMTcyMTk3LCJpYXQiOjE3NjAxNzE4OTcsImp0aSI6IjQxZTM2ZWZkZGEyZDQ2MzhhNmUyN2JlZjg3Y2UzN2FjIiwidXNlcl9pZCI6IjEifQ.S-l5_qLLw8VJZbB23jQ-ApKZ6hBH2Y8ifM-QwkStHtg"
 function CommentHeader(props:CommentProp){
+
+    const { getToken } = useAuth();
     
     const context = useContext(AuthContext);
 
@@ -44,10 +49,14 @@ function CommentHeader(props:CommentProp){
 
     // console.log(`user Token:`,auth.accessToken)  
     const postComment = async(newComment:NewComments)=> {
-        console.log(auth.accessToken)
+
+        const token = await getToken();
+        console.log("Clerk Token:",token)
+
+        // console.log(auth.accessToken)
         try{
             const response = await axios.post(`${BASE_URL}/comment/`,newComment,{
-                                          headers: { Authorization: `Bearer ${auth.accessToken}` }});
+                                          headers: { Authorization: `Bearer ${token}` }});
             console.log(response)
             return response.data
         }
