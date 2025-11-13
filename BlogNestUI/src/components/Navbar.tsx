@@ -9,6 +9,11 @@ import { Bell, Search, SquarePen, UserRound } from "lucide-react"
 import { NavLink, useNavigate} from 'react-router-dom'
 import AuthContext from "@/context/AuthProvider"
 import { useContext, useState } from "react"
+<<<<<<< Updated upstream
+=======
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
+
+>>>>>>> Stashed changes
 // import Notifications from "./Notifications"
 
 
@@ -70,8 +75,12 @@ const Navbar = () => {
                 {/* <Notifications/> */}
               </PopoverContent>
               </Popover>
-              {auth?.accessToken?( <NavLink to='/profile/1'><Button variant="outline" size="sm"><UserRound/>Profile</Button></NavLink>):
-               <NavLink to='/login'><Button variant="outline" size="sm"><UserRound/>Login</Button></NavLink>}
+               <SignedOut>
+        <div ><SignInButton className="w-25"/></div>
+      </SignedOut>
+            <SignedIn>
+        <UserButton classname="p-5" />
+      </SignedIn>
              
         </div>
       </div>
