@@ -56,7 +56,7 @@ function CommentHeader(props:CommentProp){
         console.log(auth.accessToken)
         try{
             const response = await axios.post(`${BASE_URL}/comment/`,newComment,{
-                                          headers: { Authorization: `Bearer ${auth.accessToken}` }});
+                                          headers: { Authorization: `Bearer ${token}` }});
             console.log(response)
             return response.data
         }
