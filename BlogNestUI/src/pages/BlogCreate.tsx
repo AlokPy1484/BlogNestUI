@@ -48,6 +48,10 @@ function BlogCreate(){
 
         const token = await getToken();
 
+        if (!token){
+            throw new Error("Unable to fectch token")
+        }
+
         try{
             const response = await axios.post(`${BASE_URL}/blogposts/`,newPost,{
                                           headers: { Authorization: `Bearer ${token}` }});

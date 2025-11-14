@@ -48,6 +48,11 @@ function BlogfeedCard(props:Props){
 
     const getLike = async() => {
         const token = await getToken();
+
+
+        if (!token){
+            throw new Error("Unable to fectch token")
+        }
         try{
             console.log(auth.accessToken)
             const response = await axios.get(`${BASE_URL}/like/blog/${props.id}`,{
