@@ -55,12 +55,13 @@ A modern, responsive **React.js** frontend for a social networking blog applicat
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/AlokPy1484/BlogNestUI.git
+cd BlogNestUI
 ```
 
 ### 2️⃣ Install Dependencies
 ```bash
+cd BlogNestUI
 npm install
 ```
 
