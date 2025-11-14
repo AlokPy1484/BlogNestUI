@@ -9,11 +9,8 @@ import { Bell, Search, SquarePen, UserRound } from "lucide-react"
 import { NavLink, useNavigate} from 'react-router-dom'
 import AuthContext from "@/context/AuthProvider"
 import { useContext, useState } from "react"
-<<<<<<< Updated upstream
-=======
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
 
->>>>>>> Stashed changes
 // import Notifications from "./Notifications"
 
 
