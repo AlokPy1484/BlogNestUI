@@ -5,10 +5,12 @@ import {
 } from "@/components/ui/popover"
 import { Input } from "@/components/ui/input"
 import { Button } from "./ui/button"
-import { Bell, Search, SquarePen, UserRound } from "lucide-react"
+import { Bell, Search, SquarePen} from "lucide-react"
 import { NavLink, useNavigate} from 'react-router-dom'
-import AuthContext from "@/context/AuthProvider"
-import { useContext, useState } from "react"
+// import AuthContext from "@/context/AuthProvider"
+import {  useState } from "react"
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
+
 // import Notifications from "./Notifications"
 
 
@@ -19,12 +21,12 @@ const Navbar = () => {
   
   const [search,setSearch] = useState(false);
 
-  const context = useContext(AuthContext);
+  // const context = useContext(AuthContext);
 
-  if (!context) {
-    throw new Error("AuthContext must be used within an AuthProvider");}
+  // if (!context) {
+  //   throw new Error("AuthContext must be used within an AuthProvider");}
 
-  const { auth } = context;
+  // const { auth } = context;
 
   const navigate = useNavigate();
 
@@ -70,8 +72,12 @@ const Navbar = () => {
                 {/* <Notifications/> */}
               </PopoverContent>
               </Popover>
-              {auth?.accessToken?( <NavLink to='/profile/1'><Button variant="outline" size="sm"><UserRound/>Profile</Button></NavLink>):
-               <NavLink to='/login'><Button variant="outline" size="sm"><UserRound/>Login</Button></NavLink>}
+               <SignedOut>
+        <div className="w-25" ><SignInButton /></div>
+      </SignedOut>
+            <SignedIn>
+        <UserButton />
+      </SignedIn>
              
         </div>
       </div>

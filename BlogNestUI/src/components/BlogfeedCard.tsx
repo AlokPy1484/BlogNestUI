@@ -18,7 +18,7 @@ import axios from "axios"
 import { BASE_URL } from "@/config"
 import { useMutation } from "@tanstack/react-query"
 import AuthContext from "@/context/AuthProvider"
-
+import { useAuth } from "@clerk/clerk-react";
 
 
 interface Props {
@@ -31,6 +31,7 @@ author_id?: string;
 }
 
 function BlogfeedCard(props:Props){
+    const { getToken } = useAuth();
     const  [isLiked,setIsLiked] = useState(false)
 
         const context = useContext(AuthContext);
@@ -46,10 +47,11 @@ function BlogfeedCard(props:Props){
     }
 
     const getLike = async() => {
+        const token = await getToken();
         try{
             console.log(auth.accessToken)
             const response = await axios.get(`${BASE_URL}/like/blog/${props.id}`,{
-                                          headers: { Authorization: `Bearer ${auth.accessToken}`}})
+                                          headers: { Authorization: `Bearer ${token}`}})
             console.log(response.data)
             return response.data
 
@@ -61,16 +63,17 @@ function BlogfeedCard(props:Props){
 
 
     const toggleLike = async() => {
+        const token = await getToken();
         console.log(auth.accessToken)
         try{
             const response = await axios.post(`${BASE_URL}/blogpost/${props.id}/like/`,{},{
-                                          headers: { Authorization: `Bearer ${auth.accessToken}`}})
+                                          headers: { Authorization: `Bearer ${token}`}})
             console.log(response.data)
             return response.data
 
         }
         catch(err){
-            console.log(`Error: ${err}`)
+            console.log(`toggle like Error: ${err}`)
         }
     }
 
