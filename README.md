@@ -1,6 +1,6 @@
-# 🌐 BlogNest UI 
+# 🌐 BlogNest UI ([Live Demo](https://blog-nest-ui-98u2.vercel.app))
 
-A modern, responsive **React.js** frontend for a social networking blog application where users can create posts, interact socially, and explore trending content.
+A modern, responsive **React.js** frontend for a social networking blog application where users can create posts, interact socially, and explore trending content. This frontend is deployed on Vercel using free tier plan.
 
 ---
 
