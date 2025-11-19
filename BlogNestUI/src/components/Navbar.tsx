@@ -10,6 +10,7 @@ import { NavLink, useNavigate} from 'react-router-dom'
 // import AuthContext from "@/context/AuthProvider"
 import {  useState } from "react"
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
+import Notifications from "./Notifications"
 
 // import Notifications from "./Notifications"
 
@@ -67,9 +68,9 @@ const Navbar = () => {
               <Popover>
               <PopoverTrigger><Bell className="size-4" /></PopoverTrigger>
               <PopoverContent className="bg-black">
-                <div>Notifications</div>
-                <div className=" w-full pt-4 text-zinc-500 text-center">You have 0 notifications</div>
-                {/* <Notifications/> */}
+                <div className="mb-5">Notifications</div>
+                {/* <div className=" w-full pt-4 text-zinc-500 text-center">You have 0 notifications</div> */}
+                <Notifications/>
               </PopoverContent>
               </Popover>
                <SignedOut>
