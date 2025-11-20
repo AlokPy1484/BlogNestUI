@@ -1,16 +1,21 @@
 import { BASE_URL } from "@/config"
+import { useAuth } from "@clerk/clerk-react";
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
 
 
 function Notifications(){
+     const { getToken } = useAuth();
 
 
  const fetchNotifications = async() => {
+    const token = await getToken();
 
         try{
-            const response = await axios.get(`${BASE_URL}/notifications`)
+            const response = await axios.get(`${BASE_URL}/notifications/user`,{
+                headers: { Authorization: `Bearer ${token}` },
+            })
             console.log(response)
             return response.data
         }
