@@ -4,6 +4,11 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
 
+interface Notifications{
+    id: number,
+    message: string
+}
+
 
 function Notifications(){
      const { getToken } = useAuth();
@@ -42,7 +47,7 @@ function Notifications(){
     return(
         <div>
             {
-                notifications?.map((notification) => {
+                notifications?.map((notification:Notifications) => {
                     return <div className="py-3 text-sm" key={notification.id}> {notification.message}</div>
                 })
             }
