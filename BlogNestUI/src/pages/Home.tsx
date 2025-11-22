@@ -9,7 +9,7 @@ interface Blogpost {
 id: string;
 title: string;
 content: string;
-author: string;
+author_name: string;
 date_since: string
 }
 
@@ -48,7 +48,7 @@ function HomePage(){
     <div >
         {blogposts?.results?.map((blogpost: Blogpost) => {
             return <div className="flex flex-col justify-center items-center w-screen bg-zinc-900" key={blogpost.id}>
-                <BlogfeedCard id={blogpost.id} title={blogpost.title} content={blogpost.content} author={blogpost.author}  date_since={blogpost.date_since}/>
+                <BlogfeedCard id={blogpost.id} title={blogpost.title} content={blogpost.content} author={blogpost.author_name}  date_since={blogpost.date_since}/>
                 </div>
         })}
     </div>)
