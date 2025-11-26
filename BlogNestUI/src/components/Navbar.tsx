@@ -53,8 +53,8 @@ const Navbar = () => {
   return (
     <div className="flex flex-row justify-center items-center fixed top-0 left-0 w-screen p-4 border-none bg-black z-100">
       <div className="flex flex-row justify-start md:justify-between w-screen">
-    <div className="flex flex-row justify-start gap-3 md:pl-5 w-100 md:w-full">
-      <NavLink to='/'><a className="text-shadow-blue-50 text-2xl">BlogNest</a></NavLink>
+    <div className="flex flex-row justify-start items-center gap-3 md:pl-5 w-100 md:w-full">
+      <NavLink to='/'><a className="text-shadow-blue-50 text-2xl pl-8 md:pl-2">BlogNest</a></NavLink>
       <form className={ `md:block ${search ? `block`:`hidden`}` } onSubmit={onSubmit}>
       <Input className="w-40 mr-3 md:w-80" type="input" name="search" placeholder="Search blog" />
       <Button type="submit" variant="outline">
@@ -63,8 +63,8 @@ const Navbar = () => {
       </form>
         </div>
             <div className="flex gap-2 ">
-              <Button onClick={handleClick} className="block md:hidden"><Search className="size-4" /></Button>
-              <NavLink to='/write'><Button variant="outline" size="sm"><SquarePen />Write</Button></NavLink>
+              <Button onClick={handleClick} className="block md:hidden h-11"><Search className="size-4" /></Button>
+              <NavLink to='/write'><Button variant="outline" size="lg" className="h-11"><SquarePen /></Button></NavLink>
               <Popover>
               <PopoverTrigger><Bell className="size-4" /></PopoverTrigger>
               <PopoverContent className="bg-black">
